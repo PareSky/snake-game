@@ -13,7 +13,7 @@ var Timebox =  React.createClass({
 		return{
 			time:25 * 60,
 			tickingFlag:false,
-			workingFlag:false,
+			workingFlag:true,
 			action:'start'
 		};
 	},
@@ -35,6 +35,7 @@ var Timebox =  React.createClass({
 	},
 	componentWillUpdate: function(){
 		if(this.state.time<1){
+			document.getElementById("sound").play();
 			clearInterval(this.interval);
 			this.setState({tickingFlag:false, action:'start'});
 			if(this.state.workingFlag){
@@ -48,10 +49,9 @@ var Timebox =  React.createClass({
 		clearInterval(this.interval);
 		this.setState({
 			tickingFlag:false, 
-			action:'start', 
-			workingFlag:!this.state.workingFlag
+			action:'start'
 		});
-		if(this.state.workingFlag){
+		if(!this.state.workingFlag){
 				this.setState({time:25*60, workingFlag:!this.state.workingFlag});
 		}else{
 				this.setState({time:5*60, workingFlag:!this.state.workingFlag});
@@ -60,11 +60,16 @@ var Timebox =  React.createClass({
 	render: function(){
 		return (
 			<div className='timebox'>
-			<Timer time={this.state.time}/>
-       <button 
-	      className='controller' 
-	      onClick={this.handleClick} >{this.state.action}</button>
-	     <button onClick={this.skip}>skip</button>
+				<h2>{this.state.workingFlag?'Working':'Relax'}</h2>
+				<Timer time={this.state.time}/>
+      	<button 
+		      className='controller' 
+		      onClick={this.handleClick} >{this.state.action}</button>
+	    	<button onClick={this.skip}>skip</button>
+	    	<audio controls="" id='sound'>
+				  <source src="sound/liangyin.mp3" type="audio/mpeg"/>
+				Your browser does not support the audio element.
+				</audio>
       </div>
 		);
 	}
@@ -92,7 +97,7 @@ var Timer = React.createClass({
 	render: function(){
 		return(
 			<div className='timer'>
-				{this.state.time}
+				<h2>{this.state.time}</h2>
 			</div>
 		);
 	}
