@@ -97,7 +97,7 @@ var Timer = React.createClass({
 	render: function(){
 		return(
 			<div className='timer'>
-				<h2>{this.state.time}</h2>
+				<div className='timeNum'>{this.state.time}</div>
 			</div>
 		);
 	}

@@ -1,4 +1,27 @@
+#title{
+	text-align: center;
+}
 .tomatoBox{
-	border: solid 1px #f00;
+	margin: 0 auto;
 	width: 141px;
+}
+.timebox{
+	text-align: center;
+}
+.timer{
+	position: relative;
+	margin: 0 auto;
+	border: solid 1px #f00;
+	border-radius: 100px;
+	height: 100px;
+	width: 100px;
+    margin-bottom: 7px;
+}
+.timeNum{
+	font-size: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -14px;
+    margin-left: -30px;
 }
